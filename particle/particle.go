@@ -5,36 +5,46 @@ import (
 	"os"
 	"log"
 	"slices"
+	"github.com/parallel-2d-particle-simulator/lib"
 )
 
-type particle struct {
-	pos_x float32
-	pos_y float32
-	vel_x float32
-	vel_y float32
-	mass float32
-	ptype string
+type Particle struct {
+	Pos_x float64
+	Pos_y float64
+	Vel_x float64
+	Vel_y float64
+	Acc_x float64
+	Acc_y float64
+	Mass float64
+	Ptype string
 }
 
 
-func New(ptype string, mass float32, pos_x float32, pos_y float32) *particle {
+func New(Ptype string, 
+			Mass float64, 
+			Pos_x float64, 
+			Pos_y float64, 
+			Vel_x float64, 
+			Vel_y float64, 
+			Acc_x float64, 
+			Acc_y float64) *Particle {
 	
-	if mass <= 0 {
+	if Mass <= 0 {
 		panic("New: particle mass cannot be a negative number")
 	}
 
-	if !CheckParticleType(ptype) {
+	if !CheckParticleType(Ptype) {
 		panic("New: particle type does not exist")
 	}
 
-	return &particle{ptype: ptype, mass: mass, pos_x: pos_x, pos_y: pos_y}
+	return &Particle{Ptype: Ptype, Mass: Mass, Pos_x: Pos_x, Pos_y: Pos_y, Vel_x: Vel_x, Vel_y: Vel_y, Acc_x: Acc_x, Acc_y: Acc_y}
 }
 
 
 func CheckParticleType(ptype string) bool {
 
 	// open file describing particle types
-	file, err := os.Open("particle-types.txt")
+	file, err := os.Open(lib.HomePath+"/lib/particle-types.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -61,5 +71,3 @@ func CheckParticleType(ptype string) bool {
 	// check if particle type exists
 	return slices.Contains(lines, ptype)
 }
-
-// next write simpletic particle position change
