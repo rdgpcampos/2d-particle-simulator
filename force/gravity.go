@@ -6,7 +6,7 @@ import (
 	"math"
 )
 
-func GravitationalForceAtParticle(curParticle *particle.Particle, particles []particle.Particle) (*Force, error) {
+func GravitationalForceAtParticle(curParticle *particle.Particle, particles []*particle.Particle) (*Force, error) {
 
 	err := error(nil)
 	totalForce := &Force{}
@@ -14,7 +14,7 @@ func GravitationalForceAtParticle(curParticle *particle.Particle, particles []pa
 	var r float64
 
 	for _, p := range particles {
-		if curParticle.Pos_x == p.Pos_x || curParticle.Pos_y == p.Pos_y {
+		if curParticle.Pos_x == p.Pos_x && curParticle.Pos_y == p.Pos_y {
 			err = errors.New("Force is undefined at these coordinates")
 			return &Force{0,0}, err
 		}

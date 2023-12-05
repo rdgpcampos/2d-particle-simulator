@@ -23,9 +23,9 @@ func TestForceAtParticle(t *testing.T) {
 	p2, _ := particle.New("Argon", 1.0, 3.0, 4.0, 0.0, 0.0)
 	p3, _ := particle.New("Argon", 1.0, 5.0, 12.0, 0.0, 0.0)
 
-	var particles []particle.Particle
+	var particles []*particle.Particle
 
-	particles = append(particles, *p2, *p3)
+	particles = append(particles, p2, p3)
 
 	f1, _ := GravitationalForceAtParticle(p1, particles)
 

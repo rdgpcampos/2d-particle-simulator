@@ -1,9 +1,15 @@
 package force
 
+import (
+	"github.com/parallel-2d-particle-simulator/particle"
+)
+
 type Force struct {
 	X float64
 	Y float64
 }
+
+type ForceCalc func(*particle.Particle,[]*particle.Particle) (*Force, error)
 
 func forceSum(forces ...*Force) *Force {
 	totalForce := &Force{}
@@ -19,4 +25,6 @@ func forceSum(forces ...*Force) *Force {
 
 	return totalForce
 }
+
+
 
