@@ -1,9 +1,9 @@
 package dynamics
 
 import (
-	"github.com/parallel-2d-particle-simulator/particle"
-	"github.com/parallel-2d-particle-simulator/force"
-	"github.com/parallel-2d-particle-simulator/util"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/force"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/util"
 )
 
 func Move(particles []*particle.Particle, delta_t float64, forceCalc force.ForceCalc) error {

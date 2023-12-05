@@ -3,7 +3,7 @@ package force
 import (
 	"fmt"
 	"testing"
-	"github.com/parallel-2d-particle-simulator/particle"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
 )
 
 func TestForceSum(t *testing.T) {

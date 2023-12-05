@@ -1,7 +1,7 @@
 package force
 
 import (
-	"github.com/parallel-2d-particle-simulator/particle"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
 )
 
 type Force struct {

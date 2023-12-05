@@ -7,7 +7,7 @@ import (
 	"os"
 	"slices"
 
-	"github.com/parallel-2d-particle-simulator/lib"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/lib"
 )
 
 type Particle struct {

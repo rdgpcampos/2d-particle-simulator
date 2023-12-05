@@ -1,7 +1,7 @@
 package util
 
 import (
-	"github.com/parallel-2d-particle-simulator/particle"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
 )
 
 func RemoveParticleByIndex(s []*particle.Particle, index int) []*particle.Particle {

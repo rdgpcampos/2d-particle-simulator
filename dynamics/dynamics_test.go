@@ -2,8 +2,8 @@ package dynamics
 
 import (
 	"testing"
-	"github.com/parallel-2d-particle-simulator/particle"
-	"github.com/parallel-2d-particle-simulator/force"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/force"
 )
 
 func TestMove(t *testing.T) {
