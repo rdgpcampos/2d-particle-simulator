@@ -2,9 +2,11 @@ package particle
 
 import (
 	"bufio"
-	"os"
+	"errors"
 	"log"
+	"os"
 	"slices"
+
 	"github.com/parallel-2d-particle-simulator/lib"
 )
 
@@ -26,22 +28,26 @@ func New(Ptype string,
 			Pos_y float64, 
 			Vel_x float64, 
 			Vel_y float64, 
-			Acc_x float64, 
-			Acc_y float64) *Particle {
-	
+		) (*Particle, error) {
+
+	var err error
+	var particleTypeExists bool
+
 	if Mass <= 0 {
-		panic("New: particle mass cannot be a negative number")
+		err = errors.New("New: particle mass cannot be a negative number")
 	}
 
-	if !CheckParticleType(Ptype) {
-		panic("New: particle type does not exist")
+	// check if particle type is defined before creating particle
+	particleTypeExists, err = CheckParticleType(Ptype)
+	if !particleTypeExists {
+		err = errors.New("New: particle type does not exist")
 	}
 
-	return &Particle{Ptype: Ptype, Mass: Mass, Pos_x: Pos_x, Pos_y: Pos_y, Vel_x: Vel_x, Vel_y: Vel_y, Acc_x: Acc_x, Acc_y: Acc_y}
+	return &Particle{Ptype: Ptype, Mass: Mass, Pos_x: Pos_x, Pos_y: Pos_y, Vel_x: Vel_x, Vel_y: Vel_y}, err
 }
 
 
-func CheckParticleType(ptype string) bool {
+func CheckParticleType(ptype string) (bool, error) {
 
 	// open file describing particle types
 	file, err := os.Open(lib.HomePath+"/lib/particle-types.txt")
@@ -69,5 +75,5 @@ func CheckParticleType(ptype string) bool {
 	}()
 
 	// check if particle type exists
-	return slices.Contains(lines, ptype)
+	return slices.Contains(lines, ptype), err
 }
