@@ -3,13 +3,16 @@ package main
 import (
 	"image"
 	"os"
+	"time"
+	"strconv"
 
 	_ "image/png"
 
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
-	"golang.org/x/image/colornames"
 	"github.com/rdgpcampos/parallel-2d-particle-simulator/lib"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/util"
+	"golang.org/x/image/colornames"
 )
 
 func loadPicture(path string) (pixel.Picture, error) {
@@ -46,15 +49,23 @@ func run() {
 	win.Clear(colornames.Black)
 	delta_x := 0.0
 	delta_y := 0.0
+	t := 0
+	positions, err := util.ParseFileToLines(lib.HomePath+"lib/test-positions.txt")
 
+	last := time.Now()
 	for !win.Closed() {
-		delta_x += 2
-		delta_y += 4
+		dt := time.Since(last).Seconds()
+		last = time.Now()
+
+		delta_x, _ = strconv.ParseFloat(util.SplitPositionLine(positions[t])[1],64)
+		delta_y, _ = strconv.ParseFloat(util.SplitPositionLine(positions[t])[2],64)
+
+		t = (t+1)%len(positions)
 
 		win.Clear(colornames.Black)
 
 		mat := pixel.IM
-		mat = mat.Moved(win.Bounds().Center().Add(pixel.V(delta_x,delta_y)))
+		mat = mat.Moved(win.Bounds().Center().Add(pixel.V(delta_x*dt*100,delta_y*dt*100)))
 		mat = mat.Scaled(win.Bounds().Center(),0.05)
 		sprite.Draw(win, mat)
 

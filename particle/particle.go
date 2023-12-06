@@ -1,13 +1,11 @@
 package particle
 
 import (
-	"bufio"
 	"errors"
-	"log"
-	"os"
 	"slices"
 
 	"github.com/rdgpcampos/parallel-2d-particle-simulator/lib"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/util"
 )
 
 type Particle struct {
@@ -48,32 +46,8 @@ func New(Ptype string,
 
 
 func CheckParticleType(ptype string) (bool, error) {
-
-	// open file describing particle types
-	file, err := os.Open(lib.HomePath+"/lib/particle-types.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer func() {
-		if err = file.Close(); err != nil {
-			log.Fatal(err)
-		}
-	}()
-
-	// read particle types into string array
-	var lines []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-
-	defer func() {
-		if err = scanner.Err(); err != nil {
-			log.Fatal(err)
-		}
-	}()
-
+	// read file containing all valid particle types
+	lines, err := util.ParseFileToLines(lib.HomePath+"lib/particle-types.txt")
 	// check if particle type exists
 	return slices.Contains(lines, ptype), err
 }
