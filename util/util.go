@@ -42,6 +42,25 @@ func ParseFileToLines(filePath string) ([]string, error) {
     return lines, err
 }
 
+func AppendLineToFile(line string, filePath string) error {
+    file, err := os.OpenFile(filePath,os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+    if err != nil {
+		log.Fatal(err)
+	}
+
+	defer func() {
+		if err = file.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+    if _, err := file.WriteString(line+"\n"); err != nil {
+        log.Fatal(err)
+    }
+
+    return err
+}
+
 func SplitPositionLine(s string) []string {
     splitString := strings.Split(s, " ")
     return splitString
