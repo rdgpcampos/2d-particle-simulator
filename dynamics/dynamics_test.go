@@ -2,8 +2,10 @@ package dynamics
 
 import (
 	"testing"
-	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
+
 	"github.com/rdgpcampos/parallel-2d-particle-simulator/force"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/lib"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
 )
 
 func TestMove(t *testing.T) {
@@ -30,6 +32,23 @@ func TestMove(t *testing.T) {
 	}
 }
 
+func TestRun(t *testing.T) {
+	p1, _ := particle.New("Argon", 3000.0, -30.0, 0.0, 0.0, -30.0)
+	p2, _ := particle.New("Argon", 3000.0, 30.0, 0.0, 0.0, 30.0)
+
+	var particles []*particle.Particle
+
+	particles = append(particles, p1, p2)
+
+	curT := 0.0
+	delta_t := 0.001
+
+	for curT < 10 {
+		Move(particles, delta_t, force.GravitationalForceAtParticle)
+		curT += delta_t
+		particle.LogSystem(curT, particles, lib.HomePath+"/lib/test-simple-run.txt")
+	}
+}
 
 
 

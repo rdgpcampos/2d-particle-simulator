@@ -2,6 +2,7 @@ package force
 
 import (
 	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/lib"
 	"errors"
 	"math"
 )
@@ -23,8 +24,8 @@ func GravitationalForceAtParticle(curParticle *particle.Particle, particles []*p
 		r = math.Sqrt(math.Pow(curParticle.Pos_x-p.Pos_x,2)+math.Pow(curParticle.Pos_y-p.Pos_y,2))
 
 		// force acting on current particle exerted by other p
-		curForce = &Force{p.Mass*curParticle.Mass*(p.Pos_x - curParticle.Pos_x)/(math.Pow(r,3)),
-							p.Mass*curParticle.Mass*(p.Pos_y - curParticle.Pos_y)/(math.Pow(r,3))}
+		curForce = &Force{lib.GravitationalConstant*p.Mass*curParticle.Mass*(p.Pos_x - curParticle.Pos_x)/(math.Pow(r,3)),
+							lib.GravitationalConstant*p.Mass*curParticle.Mass*(p.Pos_y - curParticle.Pos_y)/(math.Pow(r,3))}
 
 
 		totalForce = forceSum(totalForce, curForce)

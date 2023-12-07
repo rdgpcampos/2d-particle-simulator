@@ -57,9 +57,11 @@ func CheckParticleType(ptype string) (bool, error) {
 	return slices.Contains(lines, ptype), err
 }
 
+// log particle info for renderization later
 func LogSystem(currTime float64, particles []*Particle, logPath string) error {
 	var err error
 	
+	// Log data: Time ID Type Mass X Y 
 	for _,particle := range particles {
 		var line string
 		line += strconv.FormatFloat(currTime, 'f', 2, 64) + " " + 
