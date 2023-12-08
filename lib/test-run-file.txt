@@ -1,7 +1,6 @@
 create-particle Argon 1000.0 -30.0 0.0 0.0 -30.0
 create-particle Argon 1000.0 30.0 0.0 0.0 30.0
 create-particle Argon 1000.0 0.0 57.0 -30.0 0.0
-/Users/rodrigocampos/Desktop/parallel-2d-particle-simulator/logs/
 
 set-timestep 0.01
 
