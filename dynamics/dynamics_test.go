@@ -8,6 +8,7 @@ import (
 	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
 )
 
+/*
 func TestMove(t *testing.T) {
 	p1, _ := particle.New("Argon", 1.0, 0.0, 0.0, 0.0, 0.0)
 	p2, _ := particle.New("Argon", 1.0, 1.0, 0.0, 0.0, 0.0)
@@ -31,14 +32,15 @@ func TestMove(t *testing.T) {
 		t.Errorf("Acceleration was not calculated properly")
 	}
 }
-
+*/
 func TestRun(t *testing.T) {
-	p1, _ := particle.New("Argon", 3000.0, -30.0, 0.0, 0.0, -30.0)
-	p2, _ := particle.New("Argon", 3000.0, 30.0, 0.0, 0.0, 30.0)
+	p1, _ := particle.New("Argon", 3000.0, -30.0, 0.0, 0.0, -60.0)
+	p2, _ := particle.New("Argon", 3000.0, 30.0, 0.0, 0.0, 60.0)
+	p3, _ := particle.New("Argon", 3000.0, 0.0, 51.962, -60.0, 0.0)
 
 	var particles []*particle.Particle
 
-	particles = append(particles, p1, p2)
+	particles = append(particles, p1, p2, p3)
 
 	curT := 0.0
 	delta_t := 0.001

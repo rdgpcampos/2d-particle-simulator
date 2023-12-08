@@ -61,7 +61,7 @@ func AppendLineToFile(line string, filePath string) error {
     return err
 }
 
-func SplitPositionLine(s string) []string {
+func SplitLine(s string) []string {
     splitString := strings.Split(s, " ")
     return splitString
 }

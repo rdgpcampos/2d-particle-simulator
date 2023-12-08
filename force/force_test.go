@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 	"github.com/rdgpcampos/parallel-2d-particle-simulator/particle"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/lib"
 )
 
 func TestForceSum(t *testing.T) {
@@ -29,7 +30,7 @@ func TestForceAtParticle(t *testing.T) {
 
 	f1, _ := GravitationalForceAtParticle(p1, particles)
 
-	if f1.X != 3.0/125 + 5.0/13/13/13 || f1.Y != 4.0/125 + 12.0/13/13/13 {
+	if f1.X != lib.GravitationalConstant*3.0/125 + lib.GravitationalConstant*5.0/13/13/13 || f1.Y != lib.GravitationalConstant*4.0/125 + lib.GravitationalConstant*12.0/13/13/13 {
 		t.Errorf(fmt.Sprintf("%f :force was not calculated properly", f1.Y),)
 	}
 
