@@ -20,6 +20,7 @@ func RunSetupFile(filePath string) (int, string) {
 	//var log_freq int64
 	var set_force force.ForceCalc
 	var log_file string = lib.LogsPath+"test-run.txt"
+	
 
 	lines, err := util.ParseFileToLines(filePath)
 	if err != nil {

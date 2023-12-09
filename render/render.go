@@ -8,15 +8,20 @@ import (
 
 	//"time"
 
+	//"image/color"
+	//_ "image/color"
+	"image/color"
 	_ "image/png"
 
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
 	"github.com/rdgpcampos/parallel-2d-particle-simulator/lib"
-	"github.com/rdgpcampos/parallel-2d-particle-simulator/util"
 	"github.com/rdgpcampos/parallel-2d-particle-simulator/setup"
+	"github.com/rdgpcampos/parallel-2d-particle-simulator/util"
 	"golang.org/x/image/colornames"
 )
+
+
 
 func loadPicture(path string) (pixel.Picture, error) {
 	file, err := os.Open(path)
@@ -59,7 +64,7 @@ func run() {
 
 	win.SetSmooth(true)
 
-	pic, err := loadPicture(lib.ImagePath+"circle2.png")
+	pic, err := loadPicture(lib.ImagePath+"circle4.png")
 	if err != nil {
 		panic(err)
 	}
@@ -70,17 +75,36 @@ func run() {
 
 	var delta_x = make([]float64, num_particles)
 	var delta_y = make([]float64, num_particles)
+	var colors = make([]color.RGBA, num_particles)
 
 	t := 0
 	positions, err := util.ParseFileToLines(log_path)
+	var positionsAsArray []string
 
 	// run animation
 	for !win.Closed() {
 
 		for i := 0; i < num_particles; i++ {
-			id, _ := strconv.ParseInt(util.SplitLine(positions[t])[1], 10, 64)
-			delta_x[id], _ = strconv.ParseFloat(util.SplitLine(positions[t])[4],64)
-			delta_y[id], _ = strconv.ParseFloat(util.SplitLine(positions[t])[5],64)
+			positionsAsArray = util.SplitLine(positions[t])
+			id, _ := strconv.ParseInt(positionsAsArray[1], 10, 64)
+			switch positionsAsArray[2] {
+			case "Argon":
+				colors[id] = color.RGBA{40,220,220,1}
+			case "Helium":
+				colors[id] = color.RGBA{220,40,220,1}
+			case "Neon":
+				colors[id] = color.RGBA{220,220,40,1}
+			case "Krypton":
+				colors[id] = color.RGBA{100,100,220,1}
+			case "Xenon":
+				colors[id] = color.RGBA{100,220,100,1}
+			case "Radon":
+				colors[id] = color.RGBA{220,100,100,1}
+			default:
+				colors[id] = color.RGBA{255,255,255,1}
+			}
+			delta_x[id], _ = strconv.ParseFloat(positionsAsArray[4],64)
+			delta_y[id], _ = strconv.ParseFloat(positionsAsArray[5],64)
 			t = (t+1)%len(positions)
 		}
 
@@ -92,7 +116,7 @@ func run() {
 			mats[i] = pixel.IM
 			mats[i] = mats[i].Moved(win.Bounds().Center().Add(pixel.V(delta_x[i]*100,delta_y[i]*100)))
 			mats[i] = mats[i].Scaled(win.Bounds().Center(),0.05)
-			sprite.Draw(win, mats[i])
+			sprite.DrawColorMask(win, mats[i], colors[i])
 		}
 
 		win.Update()
@@ -117,7 +141,7 @@ func TestRun() {
 
 	win.SetSmooth(true)
 
-	pic, err := loadPicture(lib.ImagePath+"circle2.png")
+	pic, err := loadPicture(lib.ImagePath+"circle3.jpeg")
 	if err != nil {
 		panic(err)
 	}

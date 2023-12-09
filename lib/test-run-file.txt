@@ -1,13 +1,14 @@
-create-particle Argon 1000.0 -30.0 0.0 0.0 -30.0
-create-particle Argon 1000.0 30.0 0.0 0.0 30.0
-create-particle Argon 1000.0 0.0 57.0 -30.0 0.0
+create-particle Argon 500.0 -30.0 0.0 0.0 -30.0
+create-particle Xenon 100.0 30.0 0.0 0.0 30.0
+create-particle Radon 500.0 0.0 57.0 -30.0 0.0
+create-particle Argon 1000.0 0.0 0.0 30.0 0.0
 
-set-timestep 0.01
+set-timestep 0.001
 
 set-force gravity
 
-log-file test-simple-run-from-script.txt
+log-file test-simple-run-from-script2.txt
 
-run 10
+run 20
 
 
