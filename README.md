@@ -1,6 +1,6 @@
 2d particle simulator <br>
 
-To set up a simulation, prepare a text file that uses the following commands:
+To set up a simulation, prepare a script file that uses the following commands:
 <br>
 create-particle [particle type] [particle mass] [x position] [y position] [x velocity] [y velocity] <br>
 set-timestep [timestep size] <br>
@@ -20,7 +20,7 @@ To run a simulation, run the following command: <br>
 ```
 go run render/render.go
 ```
-<br>
+Next, specify the location of the script file.<br>
 Example: <br>
 
 ```
@@ -39,7 +39,7 @@ log-file test-simple-run-from-script13.txt
 run 10
 ```
 
-The file above will produce the simulation below: <br>
+The script above will produce the following simulation: <br>
 
 https://github.com/rdgpcampos/2d-particle-simulator/assets/70313745/507b7a4f-4ef0-4e87-8d0f-0a9febe7a35f
 
