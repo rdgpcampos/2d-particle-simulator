@@ -1,14 +1,34 @@
-create-particle Argon 500.0 -30.0 0.0 0.0 -30.0
-create-particle Xenon 100.0 30.0 0.0 0.0 30.0
-create-particle Radon 500.0 0.0 57.0 -30.0 0.0
-create-particle Argon 1000.0 0.0 0.0 30.0 0.0
+create-particle Argon 500.0 -10.0 0.0 3.0 -1.0
+create-particle Xenon 100.0 10.0 0.0 1.0 1.0
+create-particle Radon 500.0 0.0 10.0 -5.0 0.0
+create-particle Argon 400.0 0.0 0.0 1.0 0.0
+create-particle Radon 500.0 0.0 20.0 -2.0 0.0
+create-particle Radon 500.0 10.0 40.0 0.0 0.0
+create-particle Radon 500.0 20.0 20.0 0.0 0.0
+create-particle Radon 500.0 30.0 30.0 4.0 0.0
+create-particle Argon 500.0 -20.0 -10.0 5.0 10.0
+create-particle Argon 500.0 10.0 -20.0 -3.0 3.0
+create-particle Argon 500.0 20.0 -20.0 1.0 -2.0
+create-particle Argon 500.0 30.0 -10.0 -1.0 4.0
 
-set-timestep 0.001
+create-particle Xenon 500.0 -50.0 10.0 -2.0 0.0
+create-particle Xenon 500.0 -70.0 -10.0 5.0 -5.0
+create-particle Neon 500.0 -60.0 -20.0 -3.0 3.0
+create-particle Neon 500.0 -50.0 20.0 1.0 -2.0
+create-particle Neon 500.0 -60.0 0.0 -1.0 4.0
 
-set-force gravity
+create-particle Xenon 500.0 50.0 40.0 -2.0 -4.0
+create-particle Xenon 500.0 70.0 30.0 -5.0 -5.0
+create-particle Neon 500.0 60.0 30.0 -3.0 -3.0
+create-particle Neon 500.0 50.0 50.0 1.0 -2.0
+create-particle Neon 500.0 60.0 45.0 -3.0 -4.0
 
-log-file test-simple-run-from-script2.txt
+set-timestep 0.01
 
-run 20
+set-force boids
+
+log-file test-simple-run-from-script32.txt
+
+run 30
 
 

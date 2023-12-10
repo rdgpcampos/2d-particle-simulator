@@ -65,3 +65,13 @@ func SplitLine(s string) []string {
     splitString := strings.Split(s, " ")
     return splitString
 }
+
+func ElementWiseDiv[T int | float64](a []*float64, d T) []float64 {
+	var r []float64
+	
+	for _,elem := range a {
+		r = append(r,(*elem)/float64(d))
+	} 
+
+	return r
+}

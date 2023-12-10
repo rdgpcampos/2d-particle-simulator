@@ -66,6 +66,8 @@ func RunSetupFile(filePath string) (int, string) {
 			switch lineAsArray[1] {
 			case "gravity":
 				set_force = force.GravitationalForceAtParticle
+			case "boids":
+				set_force = force.BoidForceAtParticle
 			default:
 				panic("Force input is incorrect")
 			}
